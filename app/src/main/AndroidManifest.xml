@@ -3,7 +3,7 @@
 
     <application
         android:allowBackup="true"
-        android:label="我的画板"
+        android:label="我的好友"
         android:theme="@android:style/Theme.DeviceDefault">
 
         <activity
