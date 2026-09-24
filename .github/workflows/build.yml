@@ -18,6 +18,17 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: 8.7
+
+      - name: Install NDK and CMake
+        run: |
+          echo "y" | sudo ${ANDROID_HOME}/cmdline-tools/latest/bin/sdkmanager --install "ndk;25.2.9519653" "cmake;3.22.1"
+          echo "ANDROID_NDK_HOME=${ANDROID_HOME}/ndk/25.2.9519653" >> $GITHUB_ENV
+          echo "PATH=${ANDROID_HOME}/cmake/3.22.1/bin:$PATH" >> $GITHUB_ENV
+
       - name: Build Debug APK
         run: gradle assembleDebug --no-daemon
 
